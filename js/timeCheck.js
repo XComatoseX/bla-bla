@@ -27,26 +27,25 @@ let x = setInterval(function(){
   targetTime.setHours(15, 0, 0, 0); // Устанавливаем время 15:00
   
   const timeDifference = targetTime - now; // Вычисляем разницу во времени
-  const dayss = Math.floor(timeDifference / (1000 * 60 * 60 * 24)); // Оставшиеся дни
-  const hourss = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); // Оставшиеся часы
-  const minutess = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60)); // Оставшиеся минуты
-  const secondss = Math.floor((timeDifference % (1000 * 60)) / 1000); // Оставшиеся секунды
+  const d = Math.floor(timeDifference / (1000 * 60 * 60 * 24)) ?? 0 // Оставшиеся дни
+  const h = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)) ?? 0 // Оставшиеся часы
+  const m = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60)) ?? 0 // Оставшиеся минуты
+  const s = Math.floor((timeDifference % (1000 * 60)) / 1000) ?? 0 // Оставшиеся секунды
 
+  days.innetHTML = d + "<br><span>Days<span>"
+  hours.innerHTML = h + "<br><span>Hours<span>"
+  minutes.innerHTML = m + "<br><span>Minutes<span>"
+  seconds.innerHTML = s + "<br><span>Secunds<span>"
 
-  days.innetHTML = dayss + "<br><span>Days<span>"
-  hours.innerHTML = hourss + "<br><span>Hours<span>"
-  minutes.innerHTML = minutess + "<br><span>Minutes<span>"
-  seconds.innerHTML = secondss + "<br><span>Secunds<span>"
+  dd.style.strokeDashoffset = 440 - (440 * d) / 365
+  hh.style.strokeDashoffset = 440 - (440 * h) / 24
+  mm.style.strokeDashoffset = 440 - (440 * m) / 60
+  ss.style.strokeDashoffset = 440 - (440 * s) / 60
 
-  dd.style.strokeDashoffset = 440 - (440 * dayss) / 365
-  hh.style.strokeDashoffset = 440 - (440 * hourss) / 24
-  mm.style.strokeDashoffset = 440 - (440 * minutess) / 60
-  ss.style.strokeDashoffset = 440 - (440 * secondss) / 60
-
-  day_dot.style.transform = `rotateZ(${dayss * 0.986}deg)`
-  hr_dot.style.transform = `rotateZ(${hourss * 15}deg)`
-  min_dot.style.transform = `rotateZ(${minutess * 6}deg)`
-  sec_dot.style.transform = `rotateZ(${secondss * 6}deg)`
+  day_dot.style.transform = `rotateZ(${d * 0.986}deg)`
+  hr_dot.style.transform = `rotateZ(${h * 15}deg)`
+  min_dot.style.transform = `rotateZ(${m * 6}deg)`
+  sec_dot.style.transform = `rotateZ(${s * 6}deg)`
 
 
 
